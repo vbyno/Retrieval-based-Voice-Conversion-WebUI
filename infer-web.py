@@ -184,7 +184,10 @@ def vc_single(
         times = [0, 0, 0]
         if not hubert_model:
             load_hubert()
-        if_f0 = cpt.get("f0", 1)
+        try:
+            if_f0 = cpt.get("f0", 1)
+        except:
+            if_f0 = 0.5
         file_index = (
             (
                 file_index.strip(" ")
