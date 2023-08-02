@@ -596,10 +596,10 @@ def train_and_evaluate(
         os._exit(2333333)
 
 def save_filelist():
-    if_f0_3 = False
+    if_f0_3 = hps.pitch_guidance
     version19 = hps.version
     sr2 = hps.sample_rate
-    spk_id5 = 0
+    spk_id5 = hps.speaker_id
     exp_dir1 = os.path.basename(hps.experiment_dir)
     now_dir = os.getcwd()
     exp_dir = "%s/logs/%s" % (now_dir, exp_dir1)

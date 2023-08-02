@@ -354,6 +354,27 @@ def get_hparams(init=True):
         help="if caching the dataset in GPU memory, 1 or 0",
     )
 
+    parser.add_argument(
+        "--pitch_guidance",
+        action="store_true",
+        help = "The model has pitch guidance (required for singing, optional for speech)"
+    )
+    parser.add_argument(
+        "--no-pitch_guidance",
+        dest="pitch_guidance",
+        action="store_false",
+        help = "The model has pitch guidance (required for singing, optional for speech)"
+    )
+    parser.set_defaults(pitch_guidance=True)
+
+    parser.add_argument(
+        "--speaker_id",
+        type=int,
+        required=False,
+        default=0,
+        help="Speaker ID",
+    )
+
     args = parser.parse_args()
     name = args.experiment_dir
     experiment_dir = os.path.join("./logs", args.experiment_dir)
@@ -392,6 +413,8 @@ def get_hparams(init=True):
     hparams.save_every_weights = args.save_every_weights
     hparams.if_cache_data_in_gpu = args.if_cache_data_in_gpu
     hparams.data.training_files = "%s/filelist.txt" % experiment_dir
+    hparams.pitch_guidance = args.pitch_guidance
+    hparams.speaker_id = args.speaker_id
     return hparams
 
 
