@@ -375,6 +375,14 @@ def get_hparams(init=True):
         help="Speaker ID",
     )
 
+    parser.add_argument(
+        "--log_interval",
+        type=int,
+        required=False,
+        default=100,
+        help="Number of steps to log Loss",
+    )
+
     args = parser.parse_args()
     name = args.experiment_dir
     experiment_dir = os.path.join("./logs", args.experiment_dir)
@@ -407,6 +415,7 @@ def get_hparams(init=True):
     hparams.version = args.version
     hparams.gpus = args.gpus
     hparams.train.batch_size = args.batch_size
+    hparams.train.log_interval = args.log_interval
     hparams.sample_rate = args.sample_rate
     hparams.if_f0 = args.if_f0
     hparams.if_latest = args.if_latest
