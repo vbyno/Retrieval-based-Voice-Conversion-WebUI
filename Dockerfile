@@ -6,7 +6,7 @@ EXPOSE 7865
 
 WORKDIR /app
 
-COPY . .
+RUN apt update -y && apt install ffmpeg -y
 
 # Install dependenceis to add PPAs
 RUN apt-get update && \
@@ -43,5 +43,8 @@ RUN aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co
 RUN aria2c --console-log-level=error -c -x 16 -s 16 -k 1M https://huggingface.co/lj1995/VoiceConversionWebUI/resolve/main/rmvpe.pt -d assets/rmvpe -o rmvpe.pt
 
 VOLUME [ "/app/weights", "/app/opt" ]
+
+COPY requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
 
 CMD ["python3", "infer-web.py"]

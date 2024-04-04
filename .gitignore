@@ -26,3 +26,8 @@ rmvpe.pt
 /assets/weights/*
 ffmpeg.*
 ffprobe.*
+*.pth
+**.pth
+**.onnx
+training
+opt
