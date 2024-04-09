@@ -35,7 +35,7 @@ sys.argv = original_argv[0:1]
 config = Config()
 sys.argv = original_argv
 
-hps = utils.get_hparams()
+hps = utils.get_hparams(init=True)
 
 # -e mi-test -sr 40k -f0 0 -bs 1 -te 2 -se 1 -pg assets/gan/f0G40k.pth -pd assets/gan/f0D40k.pth -l 1 -c 0 -sw 0 -v v2
 # python prepare_configs.py -e mi-test -sr 40k -f0 0 -bs 1 -te 2 -se 1 -pg "assets/gan/f0G40k.pth" -pd "assets/gan/f0D40k.pth" -l 1 -c 0 -sw 0 -v v2

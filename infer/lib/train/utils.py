@@ -283,7 +283,7 @@ def load_filepaths_and_text(filename, split="|"):
     return filepaths_and_text
 
 
-def get_hparams(init=True):
+def get_hparams(init=False):
     """
     todo:
       结尾七人组：
@@ -401,8 +401,11 @@ def get_hparams(init=True):
     experiment_dir = os.path.join("./logs", args.experiment_dir)
 
     config_save_path = os.path.join(experiment_dir, "config.json")
-    with open(config_save_path, "r") as f:
-        config = json.load(f)
+    if init:
+        config = {"train": {}, "data": {}}
+    else:
+        with open(config_save_path, "r") as f:
+            config = json.load(f)
 
     hparams = HParams(**config)
     hparams.model_dir = hparams.experiment_dir = experiment_dir
