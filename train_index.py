@@ -1,17 +1,16 @@
 # python train_index.py --version v2 -e mi-test
 
 import os
-import logging
 from sklearn.cluster import MiniBatchKMeans
 import numpy as np
 import faiss
 import argparse
+from multiprocessing import cpu_count
 import platform
 import traceback
-from multiprocessing import cpu_count
+import logging
 
 logger = logging.getLogger(__name__)
-
 outside_index_root = os.getenv("outside_index_root")
 
 def get_hparams():
@@ -24,10 +23,10 @@ def get_hparams():
     )
     return parser.parse_args()
 
-def train_index(exp_dir1, version19, n_cpu = None):
-    if not n_cpu:
+def train_index(exp_dir1, version19, n_cpu=None):
+    if n_cpu is None:
         n_cpu = cpu_count()
-    # exp_dir = "%s/logs/%s" % (now_dir, exp_dir1)
+
     exp_dir = "logs/%s" % (exp_dir1)
     os.makedirs(exp_dir, exist_ok=True)
     feature_dir = (
@@ -122,10 +121,10 @@ def train_index(exp_dir1, version19, n_cpu = None):
     # faiss.write_index(index, '%s/added_IVF%s_Flat_FastScan_%s.index'%(exp_dir,n_ivf,version19))
     # infos.append("成功构建索引，added_IVF%s_Flat_FastScan_%s.index"%(n_ivf,version19))
     yield "\n".join(infos)
+    print("train_index.py Done!")
 
 if __name__ == "__main__":
     print("train_index.py started")
     params = get_hparams()
     for line in train_index(params.experiment_dir, params.version):
         print(line)
-    print("train_index.py Done!")
