@@ -40,6 +40,7 @@ hps = utils.get_hparams(init=True)
 # -e mi-test -sr 40k -f0 0 -bs 1 -te 2 -se 1 -pg assets/gan/f0G40k.pth -pd assets/gan/f0D40k.pth -l 1 -c 0 -sw 0 -v v2
 # python prepare_configs.py -e mi-test -sr 40k -f0 0 -bs 1 -te 2 -se 1 -pg "assets/gan/f0G40k.pth" -pd "assets/gan/f0D40k.pth" -l 1 -c 0 -sw 0 -v v2
 
+
 def main():
     # CUSTOM CODE
     exp_dir1 = hps.experiment_dir
@@ -53,7 +54,6 @@ def main():
     # END OF CUSTOM CODE
 
     # 生成filelist
-    # import pdb; pdb.set_trace()
     # exp_dir = "%s/logs/%s" % (now_dir, exp_dir1)
     exp_dir = exp_dir1
 
@@ -144,6 +144,7 @@ def main():
                 sort_keys=True,
             )
             f.write("\n")
+
 
 if __name__ == "__main__":
     print("prepare_configs.py started")

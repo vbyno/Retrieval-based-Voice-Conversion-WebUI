@@ -367,13 +367,13 @@ def get_hparams(init=False):
     parser.add_argument(
         "--pitch_guidance",
         action="store_true",
-        help = "The model has pitch guidance (required for singing, optional for speech)"
+        help="The model has pitch guidance (required for singing, optional for speech)",
     )
     parser.add_argument(
         "--no-pitch_guidance",
         dest="pitch_guidance",
         action="store_false",
-        help = "The model has pitch guidance (required for singing, optional for speech)"
+        help="The model has pitch guidance (required for singing, optional for speech)",
     )
     parser.set_defaults(pitch_guidance=True)
 

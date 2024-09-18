@@ -423,7 +423,9 @@ def get_vc(sid, to_return_protect0, to_return_protect1):
     global n_spk, tgt_sr, net_g, vc, cpt, version
     if sid == "" or sid == []:
         global hubert_model
-        if hubert_model is not None:  # 考虑到轮询, 需要加个判断看是否 sid 是由有模型切换到无模型的
+        if (
+            hubert_model is not None
+        ):  # 考虑到轮询, 需要加个判断看是否 sid 是由有模型切换到无模型的
             print("clean_empty_cache")
             del net_g, n_spk, vc, hubert_model, tgt_sr  # ,cpt
             hubert_model = net_g = n_spk = vc = hubert_model = tgt_sr = None
@@ -500,6 +502,7 @@ def get_vc(sid, to_return_protect0, to_return_protect1):
         to_return_protect1,
         get_index_path_from_model(sid),
     )
+
 
 def change_choices():
     names = []
