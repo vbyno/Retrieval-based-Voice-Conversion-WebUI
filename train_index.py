@@ -13,6 +13,7 @@ import logging
 logger = logging.getLogger(__name__)
 outside_index_root = os.getenv("outside_index_root")
 
+
 def get_hparams():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -22,6 +23,7 @@ def get_hparams():
         "-e", "--experiment_dir", type=str, required=True, help="experiment dir"
     )
     return parser.parse_args()
+
 
 def train_index(exp_dir1, version19, n_cpu=None):
     if n_cpu is None:
@@ -122,6 +124,7 @@ def train_index(exp_dir1, version19, n_cpu=None):
     # infos.append("成功构建索引，added_IVF%s_Flat_FastScan_%s.index"%(n_ivf,version19))
     yield "\n".join(infos)
     print("train_index.py Done!")
+
 
 if __name__ == "__main__":
     print("train_index.py started")

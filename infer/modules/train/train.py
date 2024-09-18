@@ -18,6 +18,8 @@ from random import randint, shuffle
 
 import torch
 
+torch.backends.cudnn.enabled = False
+
 try:
     import intel_extension_for_pytorch as ipex  # pylint: disable=import-error, unused-import
 
