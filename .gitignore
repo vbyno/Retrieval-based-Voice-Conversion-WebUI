@@ -31,3 +31,5 @@ ffprobe.*
 **.onnx
 training
 opt
+# Temp
+train.sh 
