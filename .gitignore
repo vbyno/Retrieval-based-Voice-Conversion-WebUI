@@ -31,3 +31,6 @@ ffprobe.*
 **.onnx
 training
 opt
+mlruns
+.python-version
+train.sh

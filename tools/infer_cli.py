@@ -16,6 +16,24 @@ from infer.modules.vc.modules import VC
 # In your Terminal or CMD or whatever
 
 
+# ------------ Start of monkey patch ------------
+# Add the following code to explicitly set PyTorch to allow the required classes during deserialization.
+import torch.serialization
+torch.serialization.add_safe_globals([
+    'fairseq.data.dictionary.Dictionary',
+    'fairseq.data.dictionary',
+    'fairseq.data'
+])
+# Then monkey patch torch.load
+import torch
+original_torch_load = torch.load
+def patched_torch_load(*args, **kwargs):
+    if 'weights_only' not in kwargs:
+        kwargs['weights_only'] = False
+    return original_torch_load(*args, **kwargs)
+torch.load = patched_torch_load
+# ------------ end of monkey patch ------------
+
 def arg_parse() -> tuple:
     parser = argparse.ArgumentParser()
     parser.add_argument("--f0up_key", type=int, default=0)
